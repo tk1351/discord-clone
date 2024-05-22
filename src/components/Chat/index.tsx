@@ -11,8 +11,8 @@ import {
 	MdPushPin,
 	MdSend,
 } from "react-icons/md";
-import styles from "./index.module.css";
 import reactImage from "../../assets/react.svg";
+import styles from "./index.module.css";
 
 export const Chat: FC = () => {
 	return (
@@ -37,23 +37,41 @@ export const Chat: FC = () => {
 			</header>
 			<main className={styles["chat-message-container"]}>
 				<div className={styles["chat-message"]}>
-					<img src={reactImage} alt="" className={styles['chat-message-avatar']} />
-					<div className={styles['chat-message-info']}>
-						<h4>Account Name<span className={styles.timestamp}>2024/01/01</span></h4>
+					<img
+						src={reactImage}
+						alt=""
+						className={styles["chat-message-avatar"]}
+					/>
+					<div className={styles["chat-message-info"]}>
+						<h4>
+							Account Name<span className={styles.timestamp}>2024/01/01</span>
+						</h4>
 						<p>Magna veniam aute exercitation sint labore.</p>
 					</div>
 				</div>
 				<div className={styles["chat-message"]}>
-					<img src={reactImage} alt="" className={styles['chat-message-avatar']} />
-					<div className={styles['chat-message-info']}>
-						<h4>Account Name<span className={styles.timestamp}>2024/01/01</span></h4>
+					<img
+						src={reactImage}
+						alt=""
+						className={styles["chat-message-avatar"]}
+					/>
+					<div className={styles["chat-message-info"]}>
+						<h4>
+							Account Name<span className={styles.timestamp}>2024/01/01</span>
+						</h4>
 						<p>Magna veniam aute exercitation sint labore.</p>
 					</div>
 				</div>
 				<div className={styles["chat-message"]}>
-					<img src={reactImage} alt="" className={styles['chat-message-avatar']} />
-					<div className={styles['chat-message-info']}>
-						<h4>Account Name<span className={styles.timestamp}>2024/01/01</span></h4>
+					<img
+						src={reactImage}
+						alt=""
+						className={styles["chat-message-avatar"]}
+					/>
+					<div className={styles["chat-message-info"]}>
+						<h4>
+							Account Name<span className={styles.timestamp}>2024/01/01</span>
+						</h4>
 						<p>Magna veniam aute exercitation sint labore.</p>
 					</div>
 				</div>
