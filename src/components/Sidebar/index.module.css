@@ -22,6 +22,10 @@
 }
 
 .channels-column {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 100%;
+    min-height: 100vh;
     background-color: #2b2d33;
     width: calc(100% - 87px);
 }
@@ -84,4 +88,42 @@
 
 .channels-column-footer {
     color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.avatar {
+    height: 30px;
+    width: 30px;
+}
+
+.account-info-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.account-name-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.account-name {
+    font-size: 16px;
+}
+
+.id {
+    font-size: 12px;
+    color: #686a6e;
+}
+
+.operations {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 20px;
+    color: #686a6e;
 }

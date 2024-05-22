@@ -1,5 +1,11 @@
 import { FC } from "react";
-import { MdAdd, MdExpandMore, MdMic, MdHeadphones, MdSettings } from "react-icons/md";
+import {
+	MdAdd,
+	MdExpandMore,
+	MdHeadphones,
+	MdMic,
+	MdSettings,
+} from "react-icons/md";
 import reactImage from "../../assets/react.svg";
 import styles from "./index.module.css";
 
@@ -54,12 +60,20 @@ export const Sidebar: FC = () => {
 						</li>
 					</ul>
 				</div>
-				<footer className={styles['channels-column-footer']}>
-					<div>
-						<img src={reactImage} alt="" />
-						<div><h4>Account Name<span>#8162</span></h4></div>
+				<footer className={styles["channels-column-footer"]}>
+					<div className={styles["account-info-wrapper"]}>
+						<img src={reactImage} alt="" className={styles.avatar} />
+						<div className={styles["account-name-wrapper"]}>
+							<h4 className={styles["account-name"]}>
+								Account Name<p className={styles.id}>#8162</p>
+							</h4>
+						</div>
 					</div>
-					<div><MdMic /><MdHeadphones /><MdSettings /></div>
+					<div className={styles.operations}>
+						<MdMic />
+						<MdHeadphones />
+						<MdSettings />
+					</div>
 				</footer>
 			</div>
 		</div>
