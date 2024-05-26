@@ -94,9 +94,20 @@
     padding: 20px;
 }
 
+.avatar-button {
+    outline: none;
+    border: none;
+    background-color: transparent;
+    height: fit-content;
+    width: fit-content;
+    padding: 0;
+    cursor: pointer;
+}
+
 .avatar {
     height: 30px;
     width: 30px;
+    border-radius: 50%;
 }
 
 .account-info-wrapper {

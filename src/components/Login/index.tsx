@@ -1,14 +1,13 @@
 import { signInWithPopup } from "firebase/auth";
-import { useAtom } from "jotai";
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import { Navigate } from "react-router-dom";
 import reactImage from "../../assets/react.svg";
+import { useAuth } from "../../hooks/useAuth.tsx";
 import { auth, provider } from "../../lib/firebase.ts";
-import { userAtom } from "../../store";
 import styles from "./index.module.css";
 
 export const Login: FC = () => {
-	const [user, setUser] = useAtom(userAtom);
+	const { user, setUser } = useAuth();
 
 	const signIn = () => {
 		signInWithPopup(auth, provider)
@@ -22,20 +21,6 @@ export const Login: FC = () => {
 			)
 			.catch((error) => console.error(error));
 	};
-
-	useEffect(() => {
-		auth.onAuthStateChanged((loggedIn) => {
-			if (loggedIn) {
-				setUser({
-					uid: loggedIn.uid,
-					photo: loggedIn.photoURL,
-					displayName: loggedIn.displayName,
-					email: loggedIn.email,
-				});
-			}
-			return;
-		});
-	}, [setUser]);
 
 	if (user) {
 		return <Navigate replace to="/" />;

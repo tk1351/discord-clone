@@ -7,9 +7,17 @@ import {
 	MdSettings,
 } from "react-icons/md";
 import reactImage from "../../assets/react.svg";
+import { auth } from "../../lib/firebase.ts";
 import styles from "./index.module.css";
 
-export const Sidebar: FC = () => {
+type Props = {
+	uid: string;
+	displayName: string;
+	photo: string;
+};
+
+export const Sidebar: FC<Props> = ({ uid, displayName, photo }) => {
+	const signOut = () => auth.signOut();
 	return (
 		<div className={styles.sidebar}>
 			{/* サーバー表示カラム */}
@@ -62,10 +70,17 @@ export const Sidebar: FC = () => {
 				</div>
 				<footer className={styles["channels-column-footer"]}>
 					<div className={styles["account-info-wrapper"]}>
-						<img src={reactImage} alt="" className={styles.avatar} />
+						<button
+							type="button"
+							className={styles["avatar-button"]}
+							onClick={signOut}
+						>
+							<img src={photo} alt="" className={styles.avatar} />
+						</button>
 						<div className={styles["account-name-wrapper"]}>
 							<h4 className={styles["account-name"]}>
-								Account Name<p className={styles.id}>#8162</p>
+								{displayName}
+								<p className={styles.id}>#{uid}</p>
 							</h4>
 						</div>
 					</div>
