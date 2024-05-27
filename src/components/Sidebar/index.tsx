@@ -7,17 +7,25 @@ import {
 	MdSettings,
 } from "react-icons/md";
 import reactImage from "../../assets/react.svg";
+import { useDialog } from "../../hooks/useDialog.tsx";
 import { auth } from "../../lib/firebase.ts";
+import { Channel } from "../../types/channel.ts";
 import styles from "./index.module.css";
 
 type Props = {
 	uid: string;
 	displayName: string;
 	photo: string;
+	channels: Channel[];
 };
 
-export const Sidebar: FC<Props> = ({ uid, displayName, photo }) => {
+export const Sidebar: FC<Props> = ({ uid, displayName, photo, channels }) => {
+	const { openDialog } = useDialog();
 	const signOut = () => auth.signOut();
+
+	const addChannel = () => {
+		openDialog();
+	};
 	return (
 		<div className={styles.sidebar}>
 			{/* サーバー表示カラム */}
@@ -40,32 +48,24 @@ export const Sidebar: FC<Props> = ({ uid, displayName, photo }) => {
 						<MdExpandMore />
 						<div className={styles["channels-header"]}>
 							<p>プログラミングチャンネル</p>
-							<button type="button" className={styles["add-button"]}>
+							<button
+								type="button"
+								className={styles["add-button"]}
+								onClick={addChannel}
+							>
 								<MdAdd />
 							</button>
 						</div>
 					</div>
 					<ul className={styles["channels-list"]}>
-						<li>
-							<h4 className={styles["channel-name"]}>
-								<span className={styles["channel-hash"]}>#</span>React
-							</h4>
-						</li>
-						<li>
-							<h4 className={styles["channel-name"]}>
-								<span className={styles["channel-hash"]}>#</span>Vue
-							</h4>
-						</li>
-						<li>
-							<h4 className={styles["channel-name"]}>
-								<span className={styles["channel-hash"]}>#</span>Svelte
-							</h4>
-						</li>
-						<li>
-							<h4 className={styles["channel-name"]}>
-								<span className={styles["channel-hash"]}>#</span>Qwik
-							</h4>
-						</li>
+						{channels.map(({ id, channel }) => (
+							<li key={id}>
+								<h4 className={styles["channel-name"]}>
+									<span className={styles["channel-hash"]}>#</span>
+									{channel.channelName}
+								</h4>
+							</li>
+						))}
 					</ul>
 				</div>
 				<footer className={styles["channels-column-footer"]}>
