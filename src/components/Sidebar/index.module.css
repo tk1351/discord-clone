@@ -72,13 +72,19 @@
     gap: 10px;
 }
 
+.channel-name-button {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    cursor: pointer;
+}
+
 .channel-hash {
     margin-right: 8px;
 }
 
 .channel-name {
     color: #7b7c85;
-    cursor: pointer;
     &:hover {
         color: #fff;
         background-color: #33363d;

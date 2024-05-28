@@ -1,3 +1,4 @@
+import { useAtom } from "jotai";
 import { FC } from "react";
 import {
 	MdAdd,
@@ -9,6 +10,7 @@ import {
 import reactImage from "../../assets/react.svg";
 import { useDialog } from "../../hooks/useDialog.tsx";
 import { auth } from "../../lib/firebase.ts";
+import { channelAtom } from "../../store";
 import { Channel } from "../../types/channel.ts";
 import styles from "./index.module.css";
 
@@ -21,10 +23,16 @@ type Props = {
 
 export const Sidebar: FC<Props> = ({ uid, displayName, photo, channels }) => {
 	const { openDialog } = useDialog();
+
+	const [_channelInfo, setChannelInfo] = useAtom(channelAtom);
 	const signOut = () => auth.signOut();
 
 	const addChannel = () => {
 		openDialog();
+	};
+
+	const onClickChannelNameButton = (id: string, channelName: string) => {
+		setChannelInfo({ id, channelName });
 	};
 	return (
 		<div className={styles.sidebar}>
@@ -60,10 +68,18 @@ export const Sidebar: FC<Props> = ({ uid, displayName, photo, channels }) => {
 					<ul className={styles["channels-list"]}>
 						{channels.map(({ id, channel }) => (
 							<li key={id}>
-								<h4 className={styles["channel-name"]}>
-									<span className={styles["channel-hash"]}>#</span>
-									{channel.channelName}
-								</h4>
+								<button
+									type="button"
+									className={styles["channel-name-button"]}
+									onClick={() =>
+										onClickChannelNameButton(id, channel.channelName)
+									}
+								>
+									<h4 className={styles["channel-name"]}>
+										<span className={styles["channel-hash"]}>#</span>
+										{channel.channelName}
+									</h4>
+								</button>
 							</li>
 						))}
 					</ul>
