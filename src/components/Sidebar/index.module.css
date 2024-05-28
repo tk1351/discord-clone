@@ -1,7 +1,7 @@
 .sidebar {
     display: flex;
     height: 100vh;
-    width: calc(100vw * 0.35);
+    width: calc(100% * 0.35);
 }
 
 .servers-column {

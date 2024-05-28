@@ -5,7 +5,7 @@
     min-height: 100vh;
     background-color: #33363d;
     height: 100vh;
-    width: calc(100vw * 0.75)
+    width: calc(100% * 0.75)
 }
 
 .chat-header {
@@ -41,6 +41,11 @@
 
 .search-input::placeholder {
     color: #e1e1e1;
+}
+
+.chat-message-container {
+    margin: 20px 0;
+    overflow-x: hidden;
 }
 
 .chat-message-list {
