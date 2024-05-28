@@ -8,7 +8,6 @@ import {
 	MdSettings,
 } from "react-icons/md";
 import reactImage from "../../assets/react.svg";
-import { useDialog } from "../../hooks/useDialog.tsx";
 import { auth } from "../../lib/firebase.ts";
 import { channelAtom } from "../../store";
 import { Channel } from "../../types/channel.ts";
@@ -19,17 +18,18 @@ type Props = {
 	displayName: string;
 	photo: string;
 	channels: Channel[];
+	onClickAddButton: () => void;
 };
 
-export const Sidebar: FC<Props> = ({ uid, displayName, photo, channels }) => {
-	const { openDialog } = useDialog();
-
+export const Sidebar: FC<Props> = ({
+	uid,
+	displayName,
+	photo,
+	channels,
+	onClickAddButton,
+}) => {
 	const [_channelInfo, setChannelInfo] = useAtom(channelAtom);
 	const signOut = () => auth.signOut();
-
-	const addChannel = () => {
-		openDialog();
-	};
 
 	const onClickChannelNameButton = (id: string, channelName: string) => {
 		setChannelInfo({ id, channelName });
@@ -59,7 +59,7 @@ export const Sidebar: FC<Props> = ({ uid, displayName, photo, channels }) => {
 							<button
 								type="button"
 								className={styles["add-button"]}
-								onClick={addChannel}
+								onClick={onClickAddButton}
 							>
 								<MdAdd />
 							</button>

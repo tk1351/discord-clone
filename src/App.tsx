@@ -1,4 +1,3 @@
-import { addDoc, collection } from "firebase/firestore";
 import { ChangeEventHandler, FC, FormEventHandler, useState } from "react";
 import { Navigate } from "react-router-dom";
 import styles from "./App.module.css";
@@ -7,11 +6,11 @@ import { Sidebar } from "./components/Sidebar";
 import { useAuth } from "./hooks/useAuth.tsx";
 import { useCollection } from "./hooks/useCollection.tsx";
 import { useDialog } from "./hooks/useDialog.tsx";
-import { db } from "./lib/firebase.ts";
+import { addChannel } from "./lib/addDoc.ts";
 import { Channel } from "./types/channel.ts";
 
 export const App: FC = () => {
-	const { dialogRef, closeDialog } = useDialog();
+	const { dialogRef, openDialog, closeDialog } = useDialog();
 
 	const [channelName, setChannelName] = useState("");
 
@@ -26,12 +25,7 @@ export const App: FC = () => {
 	) => {
 		event.preventDefault();
 
-		if (channelName !== "") {
-			await addDoc(collection(db, "channels"), {
-				channelName,
-			});
-		}
-
+		await addChannel(channelName);
 		setChannelName("");
 		closeDialog();
 	};
@@ -53,6 +47,7 @@ export const App: FC = () => {
 						photo={user.photo}
 						uid={user.uid.substring(0, 4)}
 						channels={documents}
+						onClickAddButton={openDialog}
 					/>
 					<Chat />
 				</div>
